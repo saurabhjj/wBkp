@@ -1,0 +1,59 @@
+section 3, 5 & 6 - 30 questions
+
+where are ibm s/w services
+  ibm cloud mkt place
+
+how does bluemix health manager, manage the App
+  DEA - it will capture the msg what ever dea broadcasts
+  status updates from dea
+
+whta are the types of 3 cat of delivery pipelines
+  build test deploy
+
+how does obj storage save info about object
+  metadata
+
+wht comp is reqd to manage services
+  service broker
+
+wht are the two oper supported by data works force
+  sorting and filtering
+
+what are 3 technologies of bluemix
+  cloud foundry
+  dockers
+  open stack
+
+which delivery model does mq of bluemx support
+  at most once and atleast once
+
+developer wants to invite to
+  organization manager
+
+avoid adding new routes to app cf push <appname>
+  --no-route
+
+service used to manage caching
+  data cache service
+
+2 capablities ( dev ops) track and plan provide
+  planning, manage work items,
+
+user has created a custom deployment script
+  source control management
+
+what you need to select for live deployement
+  live synch
+
+12 factor methodology, what should avoided
+  sticky sessions
+
+delivery pipeline - single stage and multiple jobs
+  it will logged and execution will terminate
+
+track and plan - organize work item
+  - backlog manager
+
+alchame api - used for images
+
+cf scale -m / -k is vertical scaling ... -i is horizontal scaling

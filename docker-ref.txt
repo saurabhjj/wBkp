@@ -1,0 +1,8 @@
+/home/ubuntu/saurabhMule/mule-root
+
+
+sudo docker run -d -v /home/ubuntu/saurabhMule/mule-root/apps:/opt/mule/apps -v /home/ubuntu/saurabhMule/mule-root/conf:/opt/mule/conf -v /home/ubuntu/saurabhMule/mule-root/logs:/opt/mule/logs eddumelendez/mule
+
+sudo docker run -p 8096:8096 -td -d -v /home/ubuntu/saurabhMule/mule-root/apps:/opt/mule/apps -v /home/ubuntu/saurabhMule/mule-root/conf:/opt/mule/conf -v /home/ubuntu/saurabhMule/mule-root/logs:/opt/mule/logs eddumelendez/mule
+
+52.90.250.64:8095/sample

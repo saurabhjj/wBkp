@@ -1,0 +1,5 @@
+Let's use test 75298 as an example. You can randomize a test by going to the test's "Advanced Settings" menu and selecting the "Miscellaneous" menu that appears. You can go here to find test 75298's Advanced Settings menu: https://www.hackerrank.com/x/tests/live/75298/advanced-settings
+Robert: The first option is for Dynamic Tests and the second option is to shuffle questions. Shuffle questions can be toggled on or off. Dynamic test needs a bit of easy setup.
+Robert: When you turn Dynamic test on it will ask you to create rules. You need to group questions by tag and select how many of those questions you want on the test.
+Robert: For example, you can put 300 questions in a test tagged Python and select 5. The test will grab 5 random questions from that pool of 300.
+Robert: Our questions have default tags that you can use. You can also create your own questions and tag them however you like

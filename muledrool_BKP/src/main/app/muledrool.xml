@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:bpm="http://www.mulesoft.org/schema/mule/bpm"
+	xmlns:script="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" 
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/3.2/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/bpm http://www.mulesoft.org/schema/mule/bpm/3.2/mule-bpm.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
+
+   	<spring:beans>
+    	<spring:bean id="order1" class="com.mulesoft.mule.droolsjpmexample.Order" scope="singleton" />
+    </spring:beans>
+
+    <bpm:drools />
+    <flow name="muledroolFlow">
+    	<composite-source doc:name="Composite Source">
+    		<vm:inbound-endpoint path="in" exchange-pattern="request-response" doc:name="VM"/>
+    		<http:inbound-endpoint exchange-pattern="request-response" host="10.208.17.142" port="9092" path="example" doc:name="HTTP"/>
+    	</composite-source>
+		<script:component doc:name="Script">
+			<script:script engine="groovy">
+				<![CDATA[
+					import java.util.Random
+					import com.mulesoft.mule.droolsjpmexample.Order
+					
+					Random generator = new Random();
+					
+					def order = new Order();
+					int idx=generator.nextInt(4);
+					order.setMerchant("Target");
+					double weight=generator.nextDouble()*200.0;
+					order.setWeight(weight);
+					return order;
+				]]>
+			</script:script>
+		</script:component>
+		
+		<bpm:rules rulesDefinition="E:/mule_workspace/muledrool/src/main/app/routingRules.drl" initialFacts-ref="order1" />
+		<expression-transformer evaluator="groovy" expression="message.getPayload().getObject()" doc:name="Expression"/>
+        <mulexml:object-to-xml-transformer doc:name="Object to XML"/>
+    </flow>
+    
+    <!-- <flow name="DroolsFlow" doc:name="DroolsFlow">
+    	<vm:inbound-endpoint ref="DroolsEndPoint" exchange-pattern="request-response" doc:name="VM"/>
+    	<bpm:rules rulesDefination="routing.drl" initailFacts-ref="NoFactsBean" />
+    	<expression-transformer evaluator="groovy" expression="message.getPayload().getObject()" doc:name="Expression"/>
+    </flow> -->
+</mule>

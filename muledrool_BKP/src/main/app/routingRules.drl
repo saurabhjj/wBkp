@@ -1,0 +1,28 @@
+#default dialect for the semantic code will be MVEL
+global org.mule.module.bpm.MessageService mule;
+
+import com.mulesoft.mule.droolsjpmexample.Order
+
+dialect "mvel"
+
+declare Order
+	@role(event)
+end
+
+rule "Select WareHouse A"
+	lock-on-active
+when
+	$order:Order(weight>50)
+then
+	#order.setDestination("WAREHOUSE_A");
+	modify($order){setDestination("WAREHOUSE_A")}
+end
+
+rule "Select WareHouse B"
+	lock-on-active
+when
+	$order:Order(weight<=50)
+then
+	#order.setDestination("WAREHOUSE_B");
+	modify($order){setDestination("WAREHOUSE_B")}
+end
